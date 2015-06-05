@@ -11,6 +11,10 @@ STATUS_FILE="${CURRENT_ORDERS}/${order}/.starphleetstatus.${name}"
 
 run_orders "${HEADQUARTERS_LOCAL}/${order}/orders"
 
+# Give the service a chance to light up
+sleep ${STARPHLEET_DRAINSTOP_WAIT}
+
+# Deploy all the things
 if [ "${UNPUBLISHED}" == "1" ]; then
   echo 'online' > "${STATUS_FILE}"
   starphleet-expose "${name}" "${HEADQUARTERS_LOCAL}/${order}/orders"
@@ -57,6 +61,7 @@ else
     starphleet-reaper "${name}" "${order}"
     # If a healthcheck exists - start our healthchecker
     if [ -n "${HEALTHCHECK}" ]; then
+      warn "Starting healthchecker for ${order} on container ${name}"
       start --no-wait starphleet_orders_healthcheck name="${name}" order="${order}"
     fi
     # For good measure
