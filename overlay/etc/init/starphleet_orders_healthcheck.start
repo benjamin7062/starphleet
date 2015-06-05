@@ -39,7 +39,6 @@ if [ -n "${HEALTHCHECK}" ]; then
       FAILED_COUNT=0
       continue;
     fi
-    error Failed Healthcheck ${TEST_GET}
     ((FAILED_COUNT++))
     # we'll read a timeout configuration from our environment, and if its not
     # specified, we'll just default to the actual controlling loop (for loop)
