@@ -55,6 +55,9 @@ if [ -n "${HEALTHCHECK}" ]; then
       fi
       warn Running starphleet-lxc-stop "${name}"
       starphleet-lxc-stop "${name}"
+      # We should automatically get restarted by another successful deploy
+      stop
+      exit 0
     fi
   done
 fi
