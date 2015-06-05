@@ -19,6 +19,9 @@ if [ "${UNPUBLISHED}" == "1" ]; then
 else
   #status logging, here indicating the healthcheck is about to go
   echo 'checking' > "${STATUS_FILE}"
+  lxc-ls --fancy "${name}" | tail -1 | awk '{ print $3; }' > "${STATUS_FILE}.ip"
+  echo "${PORT}" > "${STATUS_FILE}.port"
+  # Reduce the hits to lxc-ls --fancy by  making this available sooner
   #the container and service is started, so healthcheck it before we publish it
   #in order to have a real drainstop / transparent upgrade feature
   #if there is a specified healthcheck url
@@ -40,36 +43,24 @@ else
     fi
     trace "${name}" "${PORT}" "${PUBLISH_PORT}" "/${order}" "${HTPASSWD}" "${LDAP}"
     if ! starphleet-publish "${name}" "/${order}" "${HEADQUARTERS_LOCAL}/${order}/orders" "${HTPASSWD}" "${LDAP}" ; then
+      warn "Publish Failed - Container: ${name} / Order: ${order}"
       echo 'publish failed' > "${STATUS_FILE}"
       exit 1
     fi
     #record online, with the IP address of the container
     echo 'online' > "${STATUS_FILE}"
     echo "${name}" > "${CURRENT_ORDERS}/${order}/.last_known_good_container"
-    lxc-ls --fancy "${name}" | tail -1 | awk '{ print $3; }' > "${STATUS_FILE}.ip"
-    echo "${PORT}" > "${STATUS_FILE}.port"
     # Expose any ports requested in the orders
     starphleet-expose "${name}" "${HEADQUARTERS_LOCAL}/${order}/orders"
     #any prior version of this order should now be reaped after
     #we wait a small time for prior requests to flush out
-    sleep ${STARPHLEET_DRAINSTOP_WAIT}
     starphleet-reaper "${name}" "${order}"
-
-    ###################################
-    ## Persistent healchecker
-    ###################################
-
     if [ -n "${HEALTHCHECK}" ]; then
-
+      start --no-wait starphleet_orders_healthcheck name="${name}" order="${order}"
     fi
-
-    ###################################
-    ## End persistent healchecker
-    ###################################
-
   else
     #at this point the service has failed to properly start
-    warn service failed to publish "/${order}"
+    warn Service failed to publish "${order}" for container ${name}
     echo 'failed' > "${STATUS_FILE}"
     mail_log
     exit 1
