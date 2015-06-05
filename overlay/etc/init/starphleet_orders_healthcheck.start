@@ -25,6 +25,8 @@ if [ -n "${HEALTHCHECK}" ]; then
   sleep ${HEALTHCHECK_PULS};
   while [ 1 ];
   do
+    # Healthcheck PUlse
+    sleep ${HEALTHCHECK_PULSE}
     ACTIVE_CONTAINER=$(cat ${CURRENT_ORDERS}/${order}/.container)
     if [ "${name}" != "${ACTIVE_CONTAINER}" ]; then
       # If this isn't the current container the healthcheck timer should punt
