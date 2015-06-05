@@ -9,8 +9,8 @@ STATUS_FILE="${CURRENT_ORDERS}/${order}/.starphleetstatus.${name}"
 
 HEALTHCHECK_TIMEOUT=${HEALTHCHECK_TIMEOUT:-30}
 
-[ -f "${STATUS_FILE}.ip"] && CONTAINER_IP=$(cat "${STATUS_FILE}.ip")
-[ -f "${STATUS_FILE}.port"] && CONTAINER_PORT=$(cat "${STATUS_FILE}.port")
+[ -f "${STATUS_FILE}.ip" ] && CONTAINER_IP=$(cat "${STATUS_FILE}.ip")
+[ -f "${STATUS_FILE}.port" ] && CONTAINER_PORT=$(cat "${STATUS_FILE}.port")
 URL=${url:-/}
 
 if [ -z ${CONTAINER_IP} ] || [ -z ${CONTAINER_PORT} ]; then
