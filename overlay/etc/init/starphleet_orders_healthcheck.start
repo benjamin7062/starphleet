@@ -6,20 +6,23 @@ info "Healthcheck Engine Starting For ${name} for order ${order}"
 
 # Make sure we don't have any settings from previous orders
 unset HEALTHCHECK
+unset HEALTHCHECK_PULSE
 unset HEALTHCHECK_TIMEOUT
 unset HEALTHCHECK_RETRY_COUNT
 
 run_orders "${HEADQUARTERS_LOCAL}/${order}/orders"
+
+HEALTHCHECK_TIMEOUT=${HEALTHCHECK_TIMEOUT:-30}
+HEALTHCHECK_PULSE=${HEALTHCHECK_PULSE:-10}
+HEALTHCHECK_RETRY_COUNT=${HEALTHCHECK_RETRY_COUNT:-3}
+FAILED_COUNT=0
 
 ###################################
 ## Persistent healchecker
 ###################################
 
 if [ -n "${HEALTHCHECK}" ]; then
-  HEALTHCHECK_TIMEOUT=${HEALTHCHECK_TIMEOUT:-30}
-  IP_ADDRESS=$(lxc-ls --fancy | grep "^${name}[[:space:]]" | awk '{ print $3; }')
-  TEST_PASSED=false
-  FAILED_COUNT=0
+  sleep ${HEALTHCHECK_PULS};
   while [ 1 ];
   do
     ACTIVE_CONTAINER=$(cat ${CURRENT_ORDERS}/${order}/.container)
@@ -29,13 +32,7 @@ if [ -n "${HEALTHCHECK}" ]; then
       warn "Active Container is now [${ACTIVE_CONTAINER}] - Healthcheck ending for [${name}]"
       exit 0
     fi
-    sleep ${STARPHLEET_PULSE};
-    TEST_GET="http://${IP_ADDRESS}:${PORT}${HEALTHCHECK}"
-    TEST_COMMAND="curl -X GET --connect-timeout ${HEALTHCHECK_TIMEOUT} -o /dev/null -s -w %{response_code} ${TEST_GET}"
-    RESULT=`${TEST_COMMAND}`
-    # Less logging for now
-    # warn Healthcheck Result: ${RESULT}
-    if [ ${RESULT} == "200" ]; then
+    if starphleet-healthcheck "${name}" "${order}" "${HEALTHCHECK}" ; then
       # Reset the failed counter
       FAILED_COUNT=0
       continue;
@@ -48,7 +45,6 @@ if [ -n "${HEALTHCHECK}" ]; then
     # the default (180) without ever surpassing the default of 180.
     # since our caller sources the orders file, this can be added to your orders
     # for a specific service
-    HEALTHCHECK_RETRY_COUNT=${HEALTHCHECK_RETRY_COUNT:-3}
     if [ $FAILED_COUNT -gt ${HEALTHCHECK_RETRY_COUNT} ]; then
       error "Healthcheck Failed too many times - restarting service"
       # Debug Emailing
