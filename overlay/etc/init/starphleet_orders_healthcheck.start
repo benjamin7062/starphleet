@@ -22,7 +22,6 @@ FAILED_COUNT=0
 ###################################
 
 if [ -n "${HEALTHCHECK}" ]; then
-  sleep ${HEALTHCHECK_PULSE};
   while [ 1 ];
   do
     # Healthcheck PUlse
