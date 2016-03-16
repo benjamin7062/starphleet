@@ -107,6 +107,52 @@ isHome: true
   </p>
   <h3 id="directorystructure">Directory Structure</h3>
   <p>Starphleet makes use of a centralized configuration stored in a seperate Git repo. This repo should be secure and restricted.  This repo controls the system.  An example of the directory structure is below:</p>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th style="width: 130px;">Name</th>
+            <th>description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>./.starphleet</td>
+            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+          </tr>
+          <tr>
+            <td>version</td>
+            <td>Current version of the project</td>
+          </tr>
+          <tr>
+            <td>downloadUrl</td>
+            <td>URL of the download button</td>
+          </tr>
+          <tr>
+            <td>license</td>
+            <td>License of the project</td>
+          </tr>
+          <tr>
+            <td>licenseUrl</td>
+            <td>URL of the license text</td>
+          </tr>
+          <tr>
+            <td>headerLinks</td>
+            <td>List of links to display on the right of the top menu. Each item must contain <code>title</code> and <code>url</code> keys</td>
+          </tr>
+          <tr>
+            <td>footerLinks</td>
+            <td>List of links to display on the bottom of the page. Each item must contain <code>title</code> and <code>url</code> keys</td>
+          </tr>
+          <tr>
+            <td>header</td>
+            <td>Configuration of the header, two colors gradient and boolean to activate or deactivate <a href="http://qrohlf.com/trianglify/">Trianglify</a> generator</td>
+          </tr>
+          <tr>
+            <td>analytics</td>
+            <td>Google analytics identifiers. Provide <code>account</code> and <code>domain</code> or leave empty to deactivate</td>
+          </tr>
+        </tbody>
+      </table>
   {% highlight bash %}
      ./                    # <== Root of the Git repo used as a Starphleet Headquarters
      ./.starphleet         # <== Root of the Git repo used as a Starphleet Headquarters
