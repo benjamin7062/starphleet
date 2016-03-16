@@ -24,13 +24,18 @@ isHome: true
     <li>Every available autodeploy system requires that you set up servers to deploy your servers, which themselves aren't autodeployed.</li>
   </ul>
 
-  <h3 id="examples">Examples</h3>
+  <h3 id="concepts">Concepts</h3>
 
+  <p>A few definitions and concepts so that the rest of the documentation makes more sense.</p>
   <ul>
-    <li><a href="http://mistic100.github.io/jQuery-highlightTextarea/">jQuery highlightTextarea</a></li>
-    <li><a href="http://mistic100.github.io/angular-smilies">AngularJS Smilies</a></li>
-    <li><a href="http://mistic100.github.io/jQuery-QueryBuilder">jQuery QueryBuilder</a></li>
-    <li><a href="http://mistic100.github.io/Bootstrap-Confirmation/">Bootstrap Confirmation</a></li>
+    <li>Orders: The atomic unit of Starphleet. An individual Ruby, Python, NodeJS, or plain HTML service run in a Linux container.</li>
+    <li>Ship: A virtual machine instance with one or more running orders. Launched manually with $ vagrant up or the Starphleet CLI.</li>
+    <li>Phleet: A collection of one or more ships. Phleets are intended to correspond to a single load-and-geo-balanced resource, such as services.example.com.</li>
+    <li>Git Repositories: Starphleet requires the use of the following types of repositories.</li>
+    <li>Starphleet: Hosted by us and accessed at github.com/wballard/starphleet.git, contains the source code for Starphleet allowing you to bootstrap your headquarters repository.</li>
+    <li>Headquarters: Hosted by you at {headquarters_git_url} (with an example available from us), contains the configuration for the ships (virtual machine instances) and associated Linux containers. You will need one headquarters repository per phleet.</li>
+    <li>Services: Hosted by you at {service_git_url} and referenced in your headquarter's orders files, contains the source code for the individual services which run in Linux containers on ships.</li>
+    <li>Environment Variables: Starphleet is configured entirely by environmental variables, saving you the chore of repeatedly typing the same text.</li>
   </ul>
 </section>
 
@@ -38,10 +43,16 @@ isHome: true
 <section class="bs-docs-section">
   <h1 id="installation" class="page-header">Installation</h1>
 
-  <h2 id="install-jekyll">Install Jekyll</h2>
-  <p>Follow the <a href="https://help.github.com/articles/using-jekyll-with-pages">GitHub guide</a> to install Jekyll on your computer. The big steps are:</p>
+  <h2 id="aws-install">Install Onto EC2 in AWS</h2>
+  <p>Starphleet includes <a href="https://aws.amazon.com">Amazon Web Services (AWS)</a> support. To initialize your phleet, you need to have an AWS account.</p>
 
-  {% highlight text %} apt-get install ruby ruby-dev gem install bundler git clone git://github.com/mistic100/jekyll-bootstrap-doc bundle install bundle exec jekyll serve {% endhighlight %}
+  <ol>
+    <li>Provision an Ubuntu EC2 Instance (Currently 14.04)</li>
+    <li>Login to your provisioned instance</li>
+    <li>Run the following command:</li>
+  </ol>
+
+  <h2 id="vmware-fusion-install">Install Onto VMWare Fusion (Mac)</h2> {% highlight text %} apt-get install ruby ruby-dev gem install bundler git clone git://github.com/mistic100/jekyll-bootstrap-doc bundle install bundle exec jekyll serve {% endhighlight %}
 
   <h2 id="configuration">Configuration</h2>
   <p>Adapt the <code>_config.yml</code> file to your project.</p>
