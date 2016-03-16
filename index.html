@@ -45,6 +45,10 @@ isHome: true
     <li>Run the following command:</li>
   </ol>
 
+  {% highlight bash %}
+  bash -c "$(curl -s https://raw.githubusercontent.com/wballard/starphleet/master/webinstall)"
+  {% endhighlight %}
+
   <h3 id="vmware-fusion-install">Install Onto VMWare Fusion (Mac)</h3>
   <p>To install on a mac computer you will need the following software</p>
 
@@ -65,7 +69,7 @@ isHome: true
   </ol>
 </section>
 <section class="bs-docs-section">
-  <h1 id="putitalltogether" class="page-header">Definitions</h1>
+  <h1 id="definitions" class="page-header">Definitions</h1>
   <h3 id="phleet">Phleet</h3>
   <p>A <a href="#phleet">phleet</a> is a grouping of <a href="#ship">starphleet ships</a>. The entire phleet points to a single <a href="#headquartersrepo">headquarters</a>. These ships may be geographically located for latency or maintained in a single region.
     A phleet is comprised of machines that are intended to be identical for easy scaling.
@@ -105,6 +109,7 @@ isHome: true
   <p>Starphleet makes use of a centralized configuration stored in a seperate Git repo. This repo should be secure and restricted.  This repo controls the system.  An example of the directory structure is below:</p>
   {% highlight bash %}
      ./                    # <== Root of the Git repo used as a Starphleet Headquarters
+     ./.starphleet         # <== Root of the Git repo used as a Starphleet Headquarters
      ./authorized_keys     # <== Maps to http://services.example.com/service1
      ./service1/orders     # <== Maps to http://services.example.com/service1
      ./some_files/remote   # <== Maps to http://services.example.com/service1
