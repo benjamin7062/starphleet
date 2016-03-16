@@ -1,9 +1,4 @@
----
-layout: default
-title: Home
-description: Starphleet Documentation
-isHome: true
----
+--- layout: default title: Home description: Starphleet Documentation isHome: true ---
 
 <section class="bs-docs-section">
   <h1 id="overview" class="page-header">Overview</h1>
@@ -31,19 +26,6 @@ isHome: true
     <li>Easily combine many micro-services into a large application</li>
   </ul>
 
-  <h3 id="concepts">Concepts</h3>
-
-  <p>A few definitions and concepts so that the rest of the documentation makes more sense.</p>
-  <ul>
-    <li>Orders: The atomic unit of Starphleet. An individual Ruby, Python, NodeJS, or plain HTML service run in a Linux container.</li>
-    <li>Ship: A virtual machine instance with one or more running orders. Launched manually with $ vagrant up or the Starphleet CLI.</li>
-    <li>Phleet: A collection of one or more ships. Phleets are intended to correspond to a single load-and-geo-balanced resource, such as services.example.com.</li>
-    <li>Git Repositories: Starphleet requires the use of the following types of repositories.</li>
-    <li>Starphleet: Hosted by us and accessed at github.com/wballard/starphleet.git, contains the source code for Starphleet allowing you to bootstrap your headquarters repository.</li>
-    <li>Headquarters: Hosted by you at {headquarters_git_url} (with an example available from us), contains the configuration for the ships (virtual machine instances) and associated Linux containers. You will need one headquarters repository per phleet.</li>
-    <li>Services: Hosted by you at {service_git_url} and referenced in your headquarter's orders files, contains the source code for the individual services which run in Linux containers on ships.</li>
-    <li>Environment Variables: Starphleet is configured entirely by environmental variables, saving you the chore of repeatedly typing the same text.</li>
-  </ul>
 </section>
 
 <section class="bs-docs-section">
@@ -69,7 +51,7 @@ isHome: true
     <li><a href="http://www.vagrantup.com/vmware#buy-now">VMWare Provider License (Purchase Required)</a></li>
   </ul>
 
-  <p>Once all the software is install you can install vmware with the following steps</p>
+  <p>Once all the software is installed you can install starphleet into vmware with the following steps</p>
 
   <ol>
     <li>Clone the <a href="https://github.com/wballard/starphleet">GitHub repo</a> locally</li>
@@ -78,22 +60,45 @@ isHome: true
   </ol>
 </section>
 <section class="bs-docs-section">
-    <li>Orders: The atomic unit of Starphleet. An individual Ruby, Python, NodeJS, or plain HTML service run in a Linux container.</li>
-    <li>Ship: A virtual machine instance with one or more running orders. Launched manually with $ vagrant up or the Starphleet CLI.</li>
-    <li>Phleet: A collection of one or more ships. Phleets are intended to correspond to a single load-and-geo-balanced resource, such as services.example.com.</li>
-    <li>Git Repositories: Starphleet requires the use of the following types of repositories.</li>
-    <li>Starphleet: Hosted by us and accessed at github.com/wballard/starphleet.git, contains the source code for Starphleet allowing you to bootstrap your headquarters repository.</li>
-    <li>Headquarters: Hosted by you at {headquarters_git_url} (with an example available from us), contains the configuration for the ships (virtual machine instances) and associated Linux containers. You will need one headquarters repository per phleet.</li>
-    <li>Services: Hosted by you at {service_git_url} and referenced in your headquarter's orders files, contains the source code for the individual services which run in Linux containers on ships.</li>
-    <li>Environment Variables: Starphleet is configured entirely by environmental variables, saving you the chore of repeatedly typing the same text.</li>
-  <h1 id="putitalltogether" class="page-header">The Phleet</h1>
+  <h1 id="putitalltogether" class="page-header">Definitions</h1>
   <h2 id="phleet">Phleet</h2>
-  <p>A <a href="#phleet">phleet</a> is a grouping of <a href="#ship">ships</a>.  The entire phleet would point to a single <a href="#headquarters">headquarters</a>.  These ships may be geographically isolated for latency
+  <p>A <a href="#phleet">phleet</a> is a grouping of <a href="#ship">starphleet ships</a>. The entire phleet points to a single <a href="#headquarters">headquarters</a>. These ships may be geographically located for latency or maintained in a single region.
+    A phleet is comprised of machines that are intended to be identical for easy scaling.
+    <h2 id="ship">Ship</h2>
+    <p>
+      A ship is an Ubuntu 14.04 EC2 instance running a base install of Ubuntu. The starphleet installation will handle installing all needed software on the server.
+    </p>
+    <h2 id="headquarters">Headquarters</h2>
+    <p>
+      The headquarters is a special <a href="https://github.com/wballard/starphleet.headquarters">GitHub repo</a> that is the <i>brains</i> of your <a href="#phleet">phleet</a>. The Headquarters will store all your environment and configuration options.
+      This repo will also contain all your credentials and confidential information. It is important to keep your headquarter security restrictive. An example and template headquarters can be found <a href="https://github.com/wballard/starphleet.headquarters">here</a>.
+    </p>
+    <h2 id="orders">Orders</h2> The orders file is a special file inside a subdirectory off the root directory of the <a href="#headquarters">headquarters</a>. For Example:
+
+    <p>{% highlight bash %}
+
+      {% endhighlight %}</p> Each subdirectory off the root of the <a href="#headquarters">headquarters</a>    is checked for an <a href="#orders">orders file</a>. Starphleet will look inside the <a href="#orders">orders file</a> for deploy commands and environment variables for the service. There is a 1-1 mapping between the subdirectory that contains an
+    <a href="#orders">orders file</a> and the url of the service deployed in a container.
+    <p>
+
+    </p>
+    <h3 id="concepts">Concepts</h3>
+
+    <p>A few definitions and concepts so that the rest of the documentation makes more sense.</p>
+    <ul>
+      <li>Orders: The atomic unit of Starphleet. An individual Ruby, Python, NodeJS, or plain HTML service run in a Linux container.</li>
+      <li>Git Repositories: Starphleet requires the use of the following types of repositories.</li>
+      <li>Starphleet: Hosted by us and accessed at github.com/wballard/starphleet.git, contains the source code for Starphleet allowing you to bootstrap your headquarters repository.</li>
+      <li>Headquarters: Hosted by you at {headquarters_git_url} (with an example available from us), contains the configuration for the ships (virtual machine instances) and associated Linux containers. You will need one headquarters repository per phleet.</li>
+      <li>Services: Hosted by you at {service_git_url} and referenced in your headquarter's orders files, contains the source code for the individual services which run in Linux containers on ships.</li>
+      <li>Environment Variables: Starphleet is configured entirely by environmental variables, saving you the chore of repeatedly typing the same text.</li>
+    </ul>
+
 </section>
 
 <section class="bs-docs-section">
   <h1 id="configuration" class="page-header">Configuration</h1>
-  <p>Starphleet makes use of a centralized configruation.  The configuration for yo </p>
+  <p>Starphleet makes use of a centralized configruation. The configuration for yo </p>
   <h2 id="headquarters">Headquarters</h2>
   <p>Adapt the <code>_config.yml</code> file to your project.</p>
 
