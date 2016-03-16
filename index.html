@@ -80,7 +80,9 @@ isHome: true
     </p>
     <h2 id="orders">Orders</h2> The orders file is a special file inside a subdirectory off the root directory of the <a href="#headquarters">headquarters</a>. For Example:
 
-    <p>{% highlight bash %} ./hqroot/service1/orders {% endhighlight %}</p> Each subdirectory off the root of the <a href="#headquarters">headquarters</a> is checked for an <a href="#orders">orders file</a>. Starphleet will look inside the <a href="#orders">orders file</a>    for deploy commands and environment variables for the service. There is a 1-1 mapping between the subdirectory that contains an
+    {% highlight bash %}
+       ./service1/orders
+    {% endhighlight %} Each subdirectory off the root of the <a href="#headquarters">headquarters</a> is checked for an <a href="#orders">orders file</a>. Starphleet will look inside the <a href="#orders">orders file</a>    for deploy commands and environment variables for the service. There is a 1-1 mapping between the subdirectory that contains an
     <a href="#orders">orders file</a> and the url of the service deployed in a container.
     <p>
 
