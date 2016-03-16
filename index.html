@@ -1,9 +1,4 @@
----
-layout: default
-title: Home
-description: Starphleet Documentation
-isHome: true
----
+--- layout: default title: Home description: Starphleet Documentation isHome: true ---
 
 <section class="bs-docs-section">
   <h1 id="overview" class="page-header">Overview</h1>
@@ -11,8 +6,6 @@ isHome: true
     <p>Starphleet is a toolkit for turning virtual or physical machine infrastructure into a continuous deployment stack, running multiple Git-backed services on one more nodes via Linux containers. </p>
     <p>Starphleet borrows heavily from the concepts of the Twelve-Factor App, and uses an approach that avoids many of the problems inherent in existing autodeployment solutions: </p>
   </blockquote>
-
-  <h3 id="features">Features</h3>
 
   <ul>
     <li>Conventional virtualization, with multiple operating systems running on shared physical hardware, wastes resources, specifically RAM and CPU. This costs real money.</li>
@@ -22,6 +15,15 @@ isHome: true
     <li>Making many small services is more work than making megalith services.</li>
     <li>Deployment systems all seem to be at the system not service level.</li>
     <li>Every available autodeploy system requires that you set up servers to deploy your servers, which themselves aren't autodeployed.</li>
+  </ul>
+
+  <h3 id="features">Features</h3>
+
+  <ul>
+    <li>Linux CGROUP and container isolation</li>
+    <li>Continuous Deployment</li>
+    <li>Centralized Configuration</li>
+    <li>Easily combine many micro-services into a large application</li>
   </ul>
 
   <h3 id="concepts">Concepts</h3>
@@ -38,7 +40,6 @@ isHome: true
     <li>Environment Variables: Starphleet is configured entirely by environmental variables, saving you the chore of repeatedly typing the same text.</li>
   </ul>
 </section>
-
 
 <section class="bs-docs-section">
   <h1 id="installation" class="page-header">Installation</h1>
@@ -62,15 +63,33 @@ isHome: true
     <li><a href="http://docs.vagrantup.com/v2/vmware/installation.html">Vagrant VMWare Provider</a></li>
     <li><a href="http://www.vagrantup.com/vmware#buy-now">VMWare Provider License (Purchase Required)</a></li>
   </ul>
-  <p>{% highlight text %} apt-get install ruby ruby-dev gem install bundler git clone git://github.com/mistic100/jekyll-bootstrap-doc bundle install bundle exec jekyll serve {% endhighlight %}</p>
+
+  <p>Once all the software is install you can install vmware with the following steps</p>
+
   <ol>
-    <li>Provision an Ubuntu EC2 Instance (Currently 14.04)</li>
-    <li>Login to your provisioned instance</li>
-    <li>Run the following command:</li>
+    <li>Clone the <a href="https://github.com/wballard/starphleet">GitHub repo</a> locally</li>
+    <li>Change into the local directory</li>
+    <li>Run "./vmware"</li>
   </ol>
+</section>
+<section class="bs-docs-section">
+    <li>Orders: The atomic unit of Starphleet. An individual Ruby, Python, NodeJS, or plain HTML service run in a Linux container.</li>
+    <li>Ship: A virtual machine instance with one or more running orders. Launched manually with $ vagrant up or the Starphleet CLI.</li>
+    <li>Phleet: A collection of one or more ships. Phleets are intended to correspond to a single load-and-geo-balanced resource, such as services.example.com.</li>
+    <li>Git Repositories: Starphleet requires the use of the following types of repositories.</li>
+    <li>Starphleet: Hosted by us and accessed at github.com/wballard/starphleet.git, contains the source code for Starphleet allowing you to bootstrap your headquarters repository.</li>
+    <li>Headquarters: Hosted by you at {headquarters_git_url} (with an example available from us), contains the configuration for the ships (virtual machine instances) and associated Linux containers. You will need one headquarters repository per phleet.</li>
+    <li>Services: Hosted by you at {service_git_url} and referenced in your headquarter's orders files, contains the source code for the individual services which run in Linux containers on ships.</li>
+    <li>Environment Variables: Starphleet is configured entirely by environmental variables, saving you the chore of repeatedly typing the same text.</li>
+  <h1 id="putitalltogether" class="page-header">The Phleet</h1>
+  <h2 id="phleet">Phleet</h2>
+  <p>A <a href="#phleet">phleet</a> is a grouping of <a href="#ship">ships</a>.  The entire phleet would point to a single <a href="#headquarters">headquarters</a>.  These ships may be geographically isolated for latency
+</section>
 
-
-  <h2 id="configuration">Configuration</h2>
+<section class="bs-docs-section">
+  <h1 id="configuration" class="page-header">Configuration</h1>
+  <p>Starphleet makes use of a centralized configruation.  The configuration for yo </p>
+  <h2 id="headquarters">Headquarters</h2>
   <p>Adapt the <code>_config.yml</code> file to your project.</p>
 
   <div class="table-responsive">
