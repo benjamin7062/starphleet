@@ -52,7 +52,23 @@ isHome: true
     <li>Run the following command:</li>
   </ol>
 
-  <h2 id="vmware-fusion-install">Install Onto VMWare Fusion (Mac)</h2> {% highlight text %} apt-get install ruby ruby-dev gem install bundler git clone git://github.com/mistic100/jekyll-bootstrap-doc bundle install bundle exec jekyll serve {% endhighlight %}
+  <h2 id="vmware-fusion-install">Install Onto VMWare Fusion (Mac)</h2>
+  <p>To install on a mac computer you will need the following software</p>
+
+  <ul>
+    <li><a href="http://www.vmware.com/go/try-fusion-en">VMWare Fusion v. >= 8.1.0</a></li>
+    <li><a href="http://store.vmware.com/store/vmware/en_US/home">VMWare Fusion License (Purchase Required)</a></li>
+    <li><a href="https://www.vagrantup.com/downloads.html">Vagrant</a></li>
+    <li><a href="http://docs.vagrantup.com/v2/vmware/installation.html">Vagrant VMWare Provider</a></li>
+    <li><a href="http://www.vagrantup.com/vmware#buy-now">VMWare Provider License (Purchase Required)</a></li>
+  </ul>
+  <p>{% highlight text %} apt-get install ruby ruby-dev gem install bundler git clone git://github.com/mistic100/jekyll-bootstrap-doc bundle install bundle exec jekyll serve {% endhighlight %}</p>
+  <ol>
+    <li>Provision an Ubuntu EC2 Instance (Currently 14.04)</li>
+    <li>Login to your provisioned instance</li>
+    <li>Run the following command:</li>
+  </ol>
+
 
   <h2 id="configuration">Configuration</h2>
   <p>Adapt the <code>_config.yml</code> file to your project.</p>
