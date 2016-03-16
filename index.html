@@ -86,15 +86,16 @@ isHome: true
     <p>The orders file is a special file inside a subdirectory off the root directory of the <a href="#headquartersrepo">headquarters</a>. For Example:</p>
 
     {% highlight bash %}
-       ./                  # <== Root of the Git repo used as a Starphleet Headquarters
-       ./service1/orders   # <== Maps to http://services.example.com/service1
-    {% endhighlight %}
+   ./                  # <== Root of the Git repo used as a Starphleet Headquarters
+   ./service1/orders   # <== Maps to http://services.example.com/service1 {% endhighlight %}
 
     <p>Each subdirectory off the root of the <a href="#headquartersrepo">headquarters</a> is checked for an <a href="#orders">orders file</a>. Starphleet will look inside the <a href="#orders">orders file</a> for deploy commands and environment variables for the service. There is a 1-1 mapping between the subdirectory that contains an <a href="#orders">orders file</a> and the url of the service deployed.</p>
     <h3 id="service">Service</h3>
     <p>Service STuff!</p>
     <h3 id="environmentvariables">Environment Variables</h3>
     <p>Environment STuff!</p>
+    <h3 id="environmentvariables">Remote</h3>
+    <p>Remote STuff!</p>
 </section>
 
 <section class="bs-docs-section">
@@ -107,57 +108,58 @@ isHome: true
   </p>
   <h3 id="directorystructure">Directory Structure</h3>
   <p>Starphleet makes use of a centralized configuration stored in a separate Git repo. This repo should be secure and restricted.  The Headquarters repo contains the configuration for every service and ship in a phleet.  This repo will have special directories and files outlined below:</p>
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th style="width: 130px;">Name</th>
-            <th style="width: 50px;">Type</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>/hq/.starphleet</td>
-            <td>file</td>
-            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-          </tr>
-          <tr>
-            <td>/hq/authorized_keys</td>
-            <td>dir</td>
-            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-          </tr>
-          <tr>
-            <td>/hq/beta_groups</td>
-            <td>dir</td>
-            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-          </tr>
-          <tr>
-            <td>/hq/ldap_servers</td>
-            <td>dir</td>
-            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-          </tr>
-          <tr>
-            <td>/hq/overlay</td>
-            <td>dir</td>
-            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-          </tr>
-          <tr>
-            <td>/hq/service</td>
-            <td>dir</td>
-            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-          </tr>
-          <tr>
-            <td>/hq/service/orders</td>
-            <td>file</td>
-            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-          </tr>
-          <tr>
-            <td>/hq/service/remote</td>
-            <td>file</td>
-            <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-          </tr>
-        </tbody>
-      </table>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th style="width: 130px;">Name</th>
+        <th style="width: 50px;">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>/hq/.starphleet</td>
+        <td>file</td>
+        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+      </tr>
+      <tr>
+        <td>/hq/authorized_keys</td>
+        <td>dir</td>
+        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+      </tr>
+      <tr>
+        <td>/hq/beta_groups</td>
+        <td>dir</td>
+        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+      </tr>
+      <tr>
+        <td>/hq/ldap_servers</td>
+        <td>dir</td>
+        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+      </tr>
+      <tr>
+        <td>/hq/overlay</td>
+        <td>dir</td>
+        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+      </tr>
+      <tr>
+        <td>/hq/service</td>
+        <td>dir</td>
+        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+      </tr>
+      <tr>
+        <td>/hq/service/orders</td>
+        <td>file</td>
+        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+      </tr>
+      <tr>
+        <td>/hq/service/remote</td>
+        <td>file</td>
+        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 <section class="bs-docs-section">
   <h1 id="configuration" class="page-header">Configuration</h1>
   <p>Starphleet makes use of a centralized configruation. The configuration for yo </p>
