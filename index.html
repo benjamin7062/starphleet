@@ -1,15 +1,13 @@
----
-layout: default
-title: Home
-description: Starphleet Documentation
-isHome: true
----
+--- layout: default title: Home description: isHome: true ---
 
 <section class="bs-docs-section">
   <h1 id="overview" class="page-header">Overview</h1>
-
   <blockquote>
-    This is a Jekyll template I use for my GitHub projects documentations. It is heavily based on official Bootstrap documentation and is designed to be quickly deployed.
+    <p>Starphleet is a toolkit for turning virtual or physical machine infrastructure into a continuous deployment stack, running multiple Git-backed services on one more nodes via Linux containers. </p>
+    <p>Starphleet borrows heavily from the concepts of the Twelve-Factor
+    App, and uses an approach that avoids many of the problems inherent in existing autodeployment solutions: Conventional virtualization, with multiple operating systems running on shared physical hardware, wastes resources, specifically RAM and CPU.
+    This costs real money. Autodeploy PaaS has the same vendor lock-in risks of old proprietary software. Continuous deployment is almost always a custom scripting exercise. Multiple machine / clustered deployment is extra work. Making many small services
+    is more work than making megalith services. Deployment systems all seem to be at the system not service level. Every available autodeploy system requires that you set up servers to deploy your servers, which themselves aren't autodeployed.</p>
   </blockquote>
 
   <h3 id="features">Features</h3>
@@ -41,13 +39,7 @@ isHome: true
   <h2 id="install-jekyll">Install Jekyll</h2>
   <p>Follow the <a href="https://help.github.com/articles/using-jekyll-with-pages">GitHub guide</a> to install Jekyll on your computer. The big steps are:</p>
 
-{% highlight text %}
-apt-get install ruby ruby-dev
-gem install bundler
-git clone git://github.com/mistic100/jekyll-bootstrap-doc
-bundle install
-bundle exec jekyll serve
-{% endhighlight %}
+  {% highlight text %} apt-get install ruby ruby-dev gem install bundler git clone git://github.com/mistic100/jekyll-bootstrap-doc bundle install bundle exec jekyll serve {% endhighlight %}
 
   <h2 id="configuration">Configuration</h2>
   <p>Adapt the <code>_config.yml</code> file to your project.</p>
@@ -151,86 +143,66 @@ bundle exec jekyll serve
   <h2 id="pages">Pages</h2>
   <p>The main page is the <code>index.html</code> file. You can also add additional pages by creating <code>.html</code> files in the root folder or in any sub-folder. Each page file must begins with a template declaration:</p>
 
-{% highlight html %}
----
-layout: default
-title: Home
-description: Simple documentation template for Github pages
----
+  {% highlight html %} --- layout: default title: Home description: Simple documentation template for Github pages ---
 
-<!-- content -->
-{% endhighlight %}
+  <!-- content -->
+  {% endhighlight %}
 
   <p>Set <code>isHome</code> to <code>true</code> on the main page file, the homepage will have a bigger header with a central download button.</p>
 
-{% highlight html %}
----
-..........
-isHome: true
----
-{% endhighlight %}
+  {% highlight html %} --- .......... isHome: true --- {% endhighlight %}
 
   <p>Set <code>hide</code> to <code>true</code> to hide a page from the main menu, the page will still be accessible with direct link. <a href="hidden.html">Example</a>.</p>
 
-{% highlight html %}
----
-..........
-hide: true
----
-{% endhighlight %}
+  {% highlight html %} --- .......... hide: true --- {% endhighlight %}
 
   <h2 id="titles">Titles</h2>
   <p>In order to get the right menu automatically generated you must respect some conventions.</p>
 
-{% highlight html %}
-<!-- wrap each main section with "bs-docs-section" class -->
-<section class="bs-docs-section">
-  <!-- each section must contain ONE h1 with an id and optionally a "page-header" class -->
-  <h1 id="first-level" class="page-header">First level</h1>
+  {% highlight html %}
+  <!-- wrap each main section with "bs-docs-section" class -->
+  <section class="bs-docs-section">
+    <!-- each section must contain ONE h1 with an id and optionally a "page-header" class -->
+    <h1 id="first-level" class="page-header">First level</h1>
 
-  <!-- you can optionally declare sub-sections with h2/h3 with an id -->
-  <h2 id="sub-section">Second level</h2>
+    <!-- you can optionally declare sub-sections with h2/h3 with an id -->
+    <h2 id="sub-section">Second level</h2>
 
-  <h3 id="another-sub-section">Still second level</h3>
-</section>
-{% endhighlight %}
+    <h3 id="another-sub-section">Still second level</h3>
+  </section>
+  {% endhighlight %}
 
   <h2 id="highlight">Syntax highlight</h2>
   <p>The powerful Pygments highlighter is activated on the template, just wrap your unescaped source code with the <code>{{ "{% highlight ... " }}%}</code> directive.</p>
 
-{% highlight text %}
-{{ "{% highlight html " }}%}
-<div>Some <b>HTML</b></div>
-{{ "{% endhighlight " }}%}
-
-{{ "{% highlight javascript " }}%}
-alert('Some javascript');
-{{ "{% endhighlight " }}%}
-{% endhighlight %}
+  {% highlight text %} {{ "{% highlight html " }}%}
+  <div>Some <b>HTML</b></div>
+  {{ "{% endhighlight " }}%} {{ "{% highlight javascript " }}%} alert('Some javascript'); {{ "{% endhighlight " }}%} {% endhighlight %}
 
   <h2 id="resources">Resources &amp; links</h2>
   <p>If you need to create internal links between your pages, or include resources (JS &amp; CSS), always start your URLs with <code>{{ "{{site.github.url" }}}}</code>.</p>
 
-{% highlight html %}
-<script src="{{ "{{site.github.url" }}}}/dist/my-script.js"></script>
+  {% highlight html %}
+  <script src="{{ " {{site.github.url " }}}}/dist/my-script.js"></script>
 
-<a href="{{ "{{site.github.url" }}}}/about/index.html">About</a>
-{% endhighlight %}
+  <a href="{{ " {{site.github.url " }}}}/about/index.html">About</a> {% endhighlight %}
 
   <h2 id="bootbox">Bootbox</h2>
-  <p><a href="http://bootboxjs.com/">Bootbox</a> is installed with a syntax sugar to easily create pop-in content. To use this sugar you must create a clickable element with a <code>data-bootbox</code> attribute and an hidden content holder with a corresponding <code>id</code> attribute.</p>
+  <p><a href="http://bootboxjs.com/">Bootbox</a> is installed with a syntax sugar to easily create pop-in content. To use this sugar you must create a clickable element with a <code>data-bootbox</code> attribute and an hidden content holder with a corresponding
+    <code>id</code> attribute.</p>
 
-{% highlight html %}
-<button class="btn btn-primary btn-xs" data-bootbox="my-content">Button title</button>
+  {% highlight html %}
+  <button class="btn btn-primary btn-xs" data-bootbox="my-content">Button title</button>
 
-<div id="my-content" class="hidden" title="Pop-in title">
-  Pop-in content
-</div>
-{% endhighlight %}
+  <div id="my-content" class="hidden" title="Pop-in title">
+    Pop-in content
+  </div>
+  {% endhighlight %}
 
   <h2 id="gems">Plugins</h2>
-  <p>All available Jekyll plugins are installed by default, you can remove them by modifying the <code>gems</code> parameter in <code>_config.yml</code>. See the documentation on <a href="https://help.github.com/articles/using-jekyll-plugins-with-github-pages/">GitHub Help</a> pages.</p>
+  <p>All available Jekyll plugins are installed by default, you can remove them by modifying the <code>gems</code> parameter in <code>_config.yml</code>. See the documentation on <a href="https://help.github.com/articles/using-jekyll-plugins-with-github-pages/">GitHub Help</a>    pages.</p>
 
   <h2 id="bower">Bower</h2>
-  <p>Fell free to use the <code>bower.json</code> to manage your front dependencies. Bower packages are added the <code>dist</code> directory and <b>MUST</b> be pushed to the repository. jQuery and Bootstrap are ignored by <code>.gitignore</code> as already loaded from a CDN.</p>
+  <p>Fell free to use the <code>bower.json</code> to manage your front dependencies. Bower packages are added the <code>dist</code> directory and <b>MUST</b> be pushed to the repository. jQuery and Bootstrap are ignored by <code>.gitignore</code> as already
+    loaded from a CDN.</p>
 </section>
