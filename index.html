@@ -84,7 +84,7 @@ isHome: true
       This repo will also contain all your credentials and confidential information. It is important to keep your headquarter security restrictive. An example and template headquarters can be found <a href="https://github.com/wballard/starphleet.headquarters">here</a>.
     </p>
     <h3 id="orders">Orders</h3>
-    <p>The orders file is a special file inside a subdirectory off the root directory of the <a href="#headquartersrepo">headquarters</a>.</p> 
+    <p>The orders file is a special file inside a subdirectory off the root directory of the <a href="#headquartersrepo">headquarters</a>.</p>
 
     <p>Each subdirectory off the root of the <a href="#headquartersrepo">headquarters</a> is checked for an <a href="#orders">orders file</a>. Starphleet will look inside the <a href="#orders">orders file</a> for deploy commands and environment variables for the service. There is a 1-1 mapping between the subdirectory that contains an <a href="#orders">orders file</a> and the url of the service deployed.</p>
     <h3 id="service">Service</h3>
@@ -104,7 +104,7 @@ isHome: true
     Aside from special directories, each directory in the headquarters is assumed to be a <a href="#remote">remote</a> or <a href="#service">service</a>
   </p>
   <h3 id="specialfiles">Special Files</h3>
-  <p>Starphleet makes use of a centralized configuration stored in a separate Git repo. This repo should be secure and restricted.  The Headquarters repo contains the configuration for every service and ship in a phleet.  This repo will have special directories and files outlined below:</p>
+  <p>The Headquarters has the followin special directories and files outlined below:</p>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -158,24 +158,24 @@ isHome: true
       </thead>
       <tbody>
         <tr>
-          <td>/hq/service</td>
+          <td>/hq/$service</td>
           <td>dir</td>
-          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+          <td>Aside from the reserved files and directories in the headquarters each directory in your headquarters is considered a service endpoint.  These directories will correspond to a service that gets exposed via NGINX and inside the directories you will place files that contain all the environment and details for the service.</td>
         </tr>
         <tr>
           <td>/hq/service/orders</td>
           <td>file</td>
-          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+          <td>The orders file contains all the environment variables and <a href="#commands">Starphleet commands</a>to get a service or remote deployed.</td>
         </tr>
         <tr>
           <td>/hq/service/remote</td>
           <td>file</td>
-          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+          <td>There are times you may want to get data onto the server but the data is intended to be consumed by services.  These are called "remotes".  Just like a service, a remote is tracked for changes and automatically updated when the Git repo changes.  THe data is stored inside the container in "/var/data/$service".  $service corresponds with the service directory the remote file is located in.</td>
         </tr>
         <tr>
           <td>/hq/service/on_containerize</td>
           <td>file</td>
-          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+          <td><i>The on_containerize script must be checked into the headquarters as executable to be executed by Starphleet.</i>  When Starphleet downloads a service it will run through the built-in Heroku buildpacks and try to determine the type of application.  Before this process occurs, Starphleet will run the on_containerize script as root.  This script can run commands that might help setup the container before the buildpack begins.</td>
         </tr>
         <tr>
           <td>/hq/service/after_containerize</td>
