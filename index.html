@@ -46,8 +46,7 @@ isHome: true
   </ol>
 
   {% highlight bash %}
-  bash -c "$(curl -s https://raw.githubusercontent.com/wballard/starphleet/master/webinstall)"
-  {% endhighlight %}
+  bash -c "$(curl -s https://raw.githubusercontent.com/wballard/starphleet/master/webinstall)" {% endhighlight %}
 
   <h3 id="vmware-fusion-install">Install Onto VMWare Fusion (Mac)</h3>
   <p>To install on a mac computer you will need the following software</p>
@@ -65,8 +64,10 @@ isHome: true
   <ol>
     <li>Clone the <a href="https://github.com/wballard/starphleet">GitHub repo</a> locally</li>
     <li>Change into the local directory</li>
-    <li>Run "./vmware"</li>
+    <li>Run the following command:</li>
   </ol>
+  {% highlight bash %}
+  ${PWD}/vmware" {% endhighlight %}
 </section>
 <section class="bs-docs-section">
   <h1 id="definitions" class="page-header">Definitions</h1>
@@ -83,11 +84,7 @@ isHome: true
       This repo will also contain all your credentials and confidential information. It is important to keep your headquarter security restrictive. An example and template headquarters can be found <a href="https://github.com/wballard/starphleet.headquarters">here</a>.
     </p>
     <h3 id="orders">Orders</h3>
-    <p>The orders file is a special file inside a subdirectory off the root directory of the <a href="#headquartersrepo">headquarters</a>. For Example:</p>
-
-    {% highlight bash %}
-   ./                  # <== Root of the Git repo used as a Starphleet Headquarters
-   ./service1/orders   # <== Maps to http://services.example.com/service1 {% endhighlight %}
+    <p>The orders file is a special file inside a subdirectory off the root directory of the <a href="#headquartersrepo">headquarters</a>.</p> 
 
     <p>Each subdirectory off the root of the <a href="#headquartersrepo">headquarters</a> is checked for an <a href="#orders">orders file</a>. Starphleet will look inside the <a href="#orders">orders file</a> for deploy commands and environment variables for the service. There is a 1-1 mapping between the subdirectory that contains an <a href="#orders">orders file</a> and the url of the service deployed.</p>
     <h3 id="service">Service</h3>
@@ -147,21 +144,6 @@ isHome: true
         <td>dir</td>
         <td>The ssl directory contains any of the SSL keys associated with the domains pointing to the ships in the phleet.</td>
       </tr>
-      <tr>
-        <td>/hq/service</td>
-        <td>dir</td>
-        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-      </tr>
-      <tr>
-        <td>/hq/service/orders</td>
-        <td>file</td>
-        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-      </tr>
-      <tr>
-        <td>/hq/service/remote</td>
-        <td>file</td>
-        <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
-      </tr>
     </tbody>
   </table>
   <h3 id="servicefiles">Service Files</h3>
@@ -187,6 +169,21 @@ isHome: true
         </tr>
         <tr>
           <td>/hq/service/remote</td>
+          <td>file</td>
+          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+        </tr>
+        <tr>
+          <td>/hq/service/on_containerize</td>
+          <td>file</td>
+          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+        </tr>
+        <tr>
+          <td>/hq/service/after_containerize</td>
+          <td>file</td>
+          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+        </tr>
+        <tr>
+          <td>/hq/service/$cron_file</td>
           <td>file</td>
           <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
         </tr>
