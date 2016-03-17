@@ -175,12 +175,12 @@ isHome: true
         <tr>
           <td>/hq/service/on_containerize</td>
           <td>file</td>
-          <td><i>The on_containerize script must be checked into the headquarters as executable to be executed by Starphleet.</i>  When Starphleet downloads a service it will run through the built-in Heroku buildpacks and try to determine the type of application.  Before this process occurs, Starphleet will run the on_containerize script as root.  This script can run commands that might help setup the container before the buildpack begins.</td>
+          <td><i>The on_containerize script must be checked into the headquarters as executable to be executed by Starphleet.</i>  When Starphleet downloads a service it will run through the built-in Heroku buildpacks and try to determine the type of application.  <b>Before</b> this process occurs, Starphleet will run the on_containerize script as root.  This script can run commands that might help setup the container before the buildpack begins.</td>
         </tr>
         <tr>
           <td>/hq/service/after_containerize</td>
           <td>file</td>
-          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+          <td><i>The after_containerize script must be checked into the headquarters as executable to be executed by Starphleet.</i>  When Starphleet downloads a service it will run through the built-in Heroku buildpacks and try to determine the type of application.  <b>After</b> this process occurs, Starphleet will run the after_containerize script as root.  This script can run commands that might help setup the container after the buildpack finishes.</td>
         </tr>
         <tr>
           <td>/hq/service/$cron_file</td>
