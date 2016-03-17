@@ -91,7 +91,7 @@ isHome: true
     <p>Service STuff!</p>
     <h3 id="environmentvariables">Environment Variables</h3>
     <p>Environment STuff!</p>
-    <h3 id="environmentvariables">Remote</h3>
+    <h3 id="remotes">Remote</h3>
     <p>Remote STuff!</p>
 </section>
 
@@ -103,7 +103,7 @@ isHome: true
   <p>
     Aside from special directories, each directory in the headquarters is assumed to be a <a href="#remote">remote</a> or <a href="#service">service</a>
   </p>
-  <h3 id="specialfiles">Special Files</h3>
+  <h3 id="reservedfiles">Reserved Files and Dirs</h3>
   <p>The Headquarters has the followin special directories and files outlined below:</p>
   <table class="table table-bordered table-striped">
     <thead>
@@ -185,7 +185,7 @@ isHome: true
         <tr>
           <td>/hq/service/$cron_file</td>
           <td>file</td>
-          <td>The .starphleet file is in the root of the headquarters and handles global environment configuration for services and starphleet.  This is where you'd override default starphleet configs for the entire phleet.</td>
+          <td><i>$Cron jobs must be checked into the headquarters as executable to be executed by Starphleet.</i>  See <a href="cronjobs">cron jobs</a>for more information</td>
         </tr>
       </tbody>
     </table>
