@@ -208,13 +208,8 @@ isHome: true
           <td>Some services that run in a container need special ports exposed outside of the machine.  Expose will open a hole in the local machine's firewall and forward traffic destined for the exposed port directly into the container.</td>
         </tr>
         <tr>
-          <td>run_ad_root_or_die</td>
-          <td>file</td>
-          <td><i>The on_containerize script must be checked into the headquarters as executable to be executed by Starphleet.</i>  When Starphleet downloads a service it will run through the built-in Heroku buildpacks and try to determine the type of application.  <b>Before</b> this process occurs, Starphleet will run the on_containerize script as root.  This script can run commands that might help setup the container before the buildpack begins.</td>
-        </tr>
-        <tr>
           <td>unpublished</td>
-          <td>The orders file contains all the environment variables and <a href="#commands">Starphleet commands</a>to get a service or remote deployed.</td>
+          <td>Starphleet will create a container at the location corresponding with the path to the orders file but will not expose the service for web traffic.</td>
         </tr>
       </tbody>
     </table>
