@@ -354,6 +354,39 @@ isHome: true
     <h1 id="commands" class="page-header">Commands</h1>
   </section>
   <section class="bs-docs-section">
+    <h1 id="buildpacks" class="page-header">Buildpacks</h1>
+    <h3 id="howbuildpackswork">How Buildpacks Work</h3>
+    <p>Buildpacks autodetect and provision services in containers for you. We would like to give a huge thanks to Heroku for having open buildpacks, and to the open source community for making and extending them. The trick that makes the Starphleet orders file so simple is the use of buildpacks and platform package managers to install dynamic, service specific code, such as rubygems or npm and associated dependencies, that may vary with each push of your service. Note that <b>Starphleet will only deploy one buildpack per Linux container</b> - for services which are written in multiple languages, custom buildpacks may be required.</p>
+    <p>Starphleet currently includes support for Ruby, Python, NodeJS, and NGINX static buildpacks.</p>
+    <h3 id="defaultbuildpacks">Default Buildpacks</h3>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th style="width: 130px;">Buildpack</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://github.com/igroff/heroku-buildpack-ruby">Ruby</a></td>
+          <td>This command is passed a single argument which is a link to a github repo.  If the repo is private, the link must be an SSH link and Starphleet must have an SSH key installed with access to the repo.  This command will build a container, run your application, and if successfully completed, mount the application to the path corresponding to the location of the orders file.</td>
+        </tr>
+        <tr>
+          <td>Python</td>
+          <td>Some services that run in a container need special ports exposed outside of the machine.  Expose will open a hole in the local machine's firewall and forward traffic destined for the exposed port directly into the container.</td>
+        </tr>
+        <tr>
+          <td>NodeJS</td>
+          <td>Starphleet will create a container at the location corresponding with the path to the orders file but will not expose the service for web traffic.</td>
+        </tr>
+        <tr>
+          <td>NGINX</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="bs-docs-section">
     <h1 id="security" class="page-header">Security</h1>
     <h3 id="securitysettings">Security Settings</h3>
     <p>All variables need to be exported to be available to your application.  For instance '<i>export FOO="BAR"</i>'.  Variables are available to your application.  Some variables are exposed to your application by Starphleet and can be overridden in your headquarters</p>
