@@ -349,6 +349,144 @@ isHome: true
         </tr>
       </tbody>
     </table>
+    <h1 id="commands" class="page-header">Commands</h1>
+    <h1 id="security" class="page-header">Security</h1>
+    <h3 id="securitysettings">Security Settings</h3>
+    <p>All variables need to be exported to be available to your application.  For instance '<i>export FOO="BAR"</i>'.  Variables are available to your application.  Some variables are exposed to your application by Starphleet and can be overridden in your headquarters</p>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th style="width: 130px;">Variable</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PORT</td>
+          <td>This command is passed a single argument which is a link to a github repo.  If the repo is private, the link must be an SSH link and Starphleet must have an SSH key installed with access to the repo.  This command will build a container, run your application, and if successfully completed, mount the application to the path corresponding to the location of the orders file.</td>
+        </tr>
+        <tr>
+          <td>SECURITY_MODE</td>
+          <td>Some services that run in a container need special ports exposed outside of the machine.  Expose will open a hole in the local machine's firewall and forward traffic destined for the exposed port directly into the container.</td>
+        </tr>
+        <tr>
+          <td>$ANY_OTHER</td>
+          <td>Starphleet will create a container at the location corresponding with the path to the orders file but will not expose the service for web traffic.</td>
+        </tr>
+        <tr>
+          <td>PORT</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>LXC_ROOT</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>STARPHLEET_SHARED_DATA</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>STARPHLEET_PULSE</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>STARPHLEET_DRAINSTOP_WAIT</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>STARPHLEET_ROOT</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>HEADQUARTERS_SOURCE</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>HEADQUARTERS_LOCAL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>HEADQUARTERS_ENV</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>SHIP_SCRIPTS</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>CURRENT_ORDERS</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>PRIVATE_KEYS</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>PUBLIC_KEYS</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>NGINX_CONF</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>STARPHLEET_APP_USER</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>USER_IDENTITY_HEADER</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>USER_IDENTITY_COOKIE</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>NGINX_PUBLISHED_PATH</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>NGINX_STATUS_CONFIG_SYMLINK</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>NGINX_STATUS_ENDPOINT_CONFIG</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>STARPHLEET_DNS_ONLINE_STATUS_FILE</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>SECURITY_MODE</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>LDAP_SERVER</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>JWT_SECRET</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>JWT_AUTH_SITE</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>JWT_COOKIE_DOMAIN</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>JWT_ROLES</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>HTPASSWD</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
 </section>
 <section class="bs-docs-section">
   <h1 id="configuration" class="page-header">Configuration</h1>
