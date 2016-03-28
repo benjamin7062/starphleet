@@ -369,19 +369,19 @@ isHome: true
       <tbody>
         <tr>
           <td><a href="https://github.com/igroff/heroku-buildpack-ruby">Ruby</a></td>
-          <td>This command is passed a single argument which is a link to a github repo.  If the repo is private, the link must be an SSH link and Starphleet must have an SSH key installed with access to the repo.  This command will build a container, run your application, and if successfully completed, mount the application to the path corresponding to the location of the orders file.</td>
+          <td> This will run bundle install and make use of your Procfile. </td>
         </tr>
         <tr>
-          <td>Python</td>
-          <td>Some services that run in a container need special ports exposed outside of the machine.  Expose will open a hole in the local machine's firewall and forward traffic destined for the exposed port directly into the container.</td>
+          <td><a href="https://github.com/igroff/heroku-buildpack-python">Python</a></td>
+          <td>TODO: Fill in</td>
         </tr>
         <tr>
-          <td>NodeJS</td>
-          <td>Starphleet will create a container at the location corresponding with the path to the orders file but will not expose the service for web traffic.</td>
+          <td><a href="https://github.com/igroff/heroku-buildpack-nodejs">NodeJS</a></td>
+          <td>TODO: Fill In</td>
         </tr>
         <tr>
-          <td>NGINX</td>
-          <td></td>
+          <td><a href="https://github.com/wballard/nginx-buildpack">NGINX</a></td>
+          <td>Detect an index.html file and service static contact.</td>
         </tr>
       </tbody>
     </table>
