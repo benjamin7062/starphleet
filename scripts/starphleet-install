@@ -7,6 +7,13 @@
 
 run_as_root_or_die
 
+# Disable IPV6 or Ubuntu can't talk to DEB (package) repos 
+echo "#disable ipv6" | sudo tee -a /etc/sysctl.conf
+echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.conf
+echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.conf
+echo "net.ipv6.conf.lo.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+
 #flush out caches, I know, I know -- but really if you don't do this
 #Linux would rather swap than let go
 sync && echo 3 > /proc/sys/vm/drop_caches
