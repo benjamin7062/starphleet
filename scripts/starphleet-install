@@ -7,7 +7,7 @@
 
 run_as_root_or_die
 
-# Disable IPV6 or Ubuntu can't talk to DEB (package) repos 
+# Disable IPV6 or Ubuntu can't talk to DEB (package) repos
 echo "#disable ipv6" | sudo tee -a /etc/sysctl.conf
 echo "net.ipv6.conf.all.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.conf
 echo "net.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.conf
@@ -20,6 +20,9 @@ sync && echo 3 > /proc/sys/vm/drop_caches
 
 # MOAR PORTS
 echo "10240 65535" > /proc/sys/net/ipv4/ip_local_port_range
+
+# Enable forwarding so the base container builds
+echo 1 > /proc/sys/net/ipv4/ip_forward
 
 # To support a fresh installation but keep the config in the overlay
 # we need access to the default starphleet config. We are going
