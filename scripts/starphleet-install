@@ -16,6 +16,8 @@ echo "10240 65535" > /proc/sys/net/ipv4/ip_local_port_range
 
 # Enable forwarding so the base container builds
 echo 1 > /proc/sys/net/ipv4/ip_forward
+[ -f "/etc/sysctl.d/99-gce.conf" ] && sed -i -e 's|.*ip_forward.*||' /etc/sysctl.d/99-gce.conf
+[ -f "/etc/sysctl.d/11-gce-network-security.conf" ] && sed -i -e 's|.*ip_forward.*||' /etc/sysctl.d/11-gce-network-security.conf
 
 # To support a fresh installation but keep the config in the overlay
 # we need access to the default starphleet config. We are going
