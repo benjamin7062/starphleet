@@ -24,5 +24,6 @@ rsync
 iotop
 iftop
 htop
+lxc
 libyaml-dev
 parallel
